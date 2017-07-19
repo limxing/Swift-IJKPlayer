@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA5E9EE51F1F88210022A322 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9EE41F1F88210022A322 /* AppDelegate.swift */; };
+		AA5E9EE71F1F88210022A322 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9EE61F1F88210022A322 /* ViewController.swift */; };
+		AA5E9EEA1F1F88210022A322 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5E9EE81F1F88210022A322 /* Main.storyboard */; };
+		AA5E9EEC1F1F88210022A322 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA5E9EEB1F1F88210022A322 /* Assets.xcassets */; };
+		AA5E9EEF1F1F88210022A322 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5E9EED1F1F88210022A322 /* LaunchScreen.storyboard */; };
+		AA5E9EFC1F1F885F0022A322 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9EF71F1F885F0022A322 /* AudioToolbox.framework */; };
+		AA5E9EFD1F1F885F0022A322 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9EF81F1F885F0022A322 /* AVFoundation.framework */; };
+		AA5E9EFE1F1F885F0022A322 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9EF91F1F885F0022A322 /* CoreGraphics.framework */; };
+		AA5E9EFF1F1F885F0022A322 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9EFA1F1F885F0022A322 /* CoreMedia.framework */; };
+		AA5E9F001F1F885F0022A322 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9EFB1F1F885F0022A322 /* CoreVideo.framework */; };
+		AA5E9F031F1F88920022A322 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F011F1F88920022A322 /* libbz2.tbd */; };
+		AA5E9F041F1F88920022A322 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F021F1F88920022A322 /* libz.tbd */; };
+		AA5E9F0B1F1F88BA0022A322 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F051F1F88BA0022A322 /* MediaPlayer.framework */; };
+		AA5E9F0C1F1F88BA0022A322 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F061F1F88BA0022A322 /* MobileCoreServices.framework */; };
+		AA5E9F0D1F1F88BA0022A322 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F071F1F88BA0022A322 /* OpenGLES.framework */; };
+		AA5E9F0E1F1F88BA0022A322 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F081F1F88BA0022A322 /* QuartzCore.framework */; };
+		AA5E9F0F1F1F88BA0022A322 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F091F1F88BA0022A322 /* UIKit.framework */; };
+		AA5E9F101F1F88BA0022A322 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F0A1F1F88BA0022A322 /* VideoToolbox.framework */; };
+		AA5E9F121F1F88CF0022A322 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F111F1F88CF0022A322 /* libstdc++.tbd */; };
+		AA5E9F141F1F88EB0022A322 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F131F1F88EB0022A322 /* IJKMediaFramework.framework */; };
+		AA5E9F181F1F89630022A322 /* PlayControButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9F151F1F89630022A322 /* PlayControButton.swift */; };
+		AA5E9F191F1F89630022A322 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */; };
+		AA5E9F1A1F1F89630022A322 /* VideoPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA5E9EE11F1F88210022A322 /* Swift-IJKPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-IJKPlayer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA5E9EE41F1F88210022A322 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA5E9EE61F1F88210022A322 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AA5E9EE91F1F88210022A322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AA5E9EEB1F1F88210022A322 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA5E9EEE1F1F88210022A322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AA5E9EF01F1F88210022A322 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA5E9EF71F1F885F0022A322 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AA5E9EF81F1F885F0022A322 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		AA5E9EF91F1F885F0022A322 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AA5E9EFA1F1F885F0022A322 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		AA5E9EFB1F1F885F0022A322 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		AA5E9F011F1F88920022A322 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		AA5E9F021F1F88920022A322 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		AA5E9F051F1F88BA0022A322 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		AA5E9F061F1F88BA0022A322 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		AA5E9F071F1F88BA0022A322 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		AA5E9F081F1F88BA0022A322 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AA5E9F091F1F88BA0022A322 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AA5E9F0A1F1F88BA0022A322 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		AA5E9F111F1F88CF0022A322 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		AA5E9F131F1F88EB0022A322 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		AA5E9F151F1F89630022A322 /* PlayControButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayControButton.swift; sourceTree = "<group>"; };
+		AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA5E9EDE1F1F88210022A322 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5E9F141F1F88EB0022A322 /* IJKMediaFramework.framework in Frameworks */,
+				AA5E9F121F1F88CF0022A322 /* libstdc++.tbd in Frameworks */,
+				AA5E9F0B1F1F88BA0022A322 /* MediaPlayer.framework in Frameworks */,
+				AA5E9F0C1F1F88BA0022A322 /* MobileCoreServices.framework in Frameworks */,
+				AA5E9F0D1F1F88BA0022A322 /* OpenGLES.framework in Frameworks */,
+				AA5E9F0E1F1F88BA0022A322 /* QuartzCore.framework in Frameworks */,
+				AA5E9F0F1F1F88BA0022A322 /* UIKit.framework in Frameworks */,
+				AA5E9F101F1F88BA0022A322 /* VideoToolbox.framework in Frameworks */,
+				AA5E9F031F1F88920022A322 /* libbz2.tbd in Frameworks */,
+				AA5E9F041F1F88920022A322 /* libz.tbd in Frameworks */,
+				AA5E9EFC1F1F885F0022A322 /* AudioToolbox.framework in Frameworks */,
+				AA5E9EFD1F1F885F0022A322 /* AVFoundation.framework in Frameworks */,
+				AA5E9EFE1F1F885F0022A322 /* CoreGraphics.framework in Frameworks */,
+				AA5E9EFF1F1F885F0022A322 /* CoreMedia.framework in Frameworks */,
+				AA5E9F001F1F885F0022A322 /* CoreVideo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA5E9ED81F1F88210022A322 = {
+			isa = PBXGroup;
+			children = (
+				AA5E9EE31F1F88210022A322 /* Swift-IJKPlayer */,
+				AA5E9EE21F1F88210022A322 /* Products */,
+				AA5E9EF61F1F885F0022A322 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AA5E9EE21F1F88210022A322 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA5E9EE11F1F88210022A322 /* Swift-IJKPlayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA5E9EE31F1F88210022A322 /* Swift-IJKPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				AA5E9F1B1F1F90C10022A322 /* VideoPlayer */,
+				AA5E9EE41F1F88210022A322 /* AppDelegate.swift */,
+				AA5E9EE61F1F88210022A322 /* ViewController.swift */,
+				AA5E9EE81F1F88210022A322 /* Main.storyboard */,
+				AA5E9EEB1F1F88210022A322 /* Assets.xcassets */,
+				AA5E9EED1F1F88210022A322 /* LaunchScreen.storyboard */,
+				AA5E9EF01F1F88210022A322 /* Info.plist */,
+			);
+			path = "Swift-IJKPlayer";
+			sourceTree = "<group>";
+		};
+		AA5E9EF61F1F885F0022A322 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA5E9F131F1F88EB0022A322 /* IJKMediaFramework.framework */,
+				AA5E9F111F1F88CF0022A322 /* libstdc++.tbd */,
+				AA5E9F051F1F88BA0022A322 /* MediaPlayer.framework */,
+				AA5E9F061F1F88BA0022A322 /* MobileCoreServices.framework */,
+				AA5E9F071F1F88BA0022A322 /* OpenGLES.framework */,
+				AA5E9F081F1F88BA0022A322 /* QuartzCore.framework */,
+				AA5E9F091F1F88BA0022A322 /* UIKit.framework */,
+				AA5E9F0A1F1F88BA0022A322 /* VideoToolbox.framework */,
+				AA5E9F011F1F88920022A322 /* libbz2.tbd */,
+				AA5E9F021F1F88920022A322 /* libz.tbd */,
+				AA5E9EF71F1F885F0022A322 /* AudioToolbox.framework */,
+				AA5E9EF81F1F885F0022A322 /* AVFoundation.framework */,
+				AA5E9EF91F1F885F0022A322 /* CoreGraphics.framework */,
+				AA5E9EFA1F1F885F0022A322 /* CoreMedia.framework */,
+				AA5E9EFB1F1F885F0022A322 /* CoreVideo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA5E9F1B1F1F90C10022A322 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				AA5E9F151F1F89630022A322 /* PlayControButton.swift */,
+				AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */,
+				AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */,
+			);
+			name = VideoPlayer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA5E9EE01F1F88210022A322 /* Swift-IJKPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA5E9EF31F1F88210022A322 /* Build configuration list for PBXNativeTarget "Swift-IJKPlayer" */;
+			buildPhases = (
+				AA5E9EDD1F1F88210022A322 /* Sources */,
+				AA5E9EDE1F1F88210022A322 /* Frameworks */,
+				AA5E9EDF1F1F88210022A322 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swift-IJKPlayer";
+			productName = "Swift-IJKPlayer";
+			productReference = AA5E9EE11F1F88210022A322 /* Swift-IJKPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA5E9ED91F1F88210022A322 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = leefeng;
+				TargetAttributes = {
+					AA5E9EE01F1F88210022A322 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = E782SURY2Q;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = AA5E9EDC1F1F88210022A322 /* Build configuration list for PBXProject "Swift-IJKPlayer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA5E9ED81F1F88210022A322;
+			productRefGroup = AA5E9EE21F1F88210022A322 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA5E9EE01F1F88210022A322 /* Swift-IJKPlayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA5E9EDF1F1F88210022A322 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5E9EEF1F1F88210022A322 /* LaunchScreen.storyboard in Resources */,
+				AA5E9EEC1F1F88210022A322 /* Assets.xcassets in Resources */,
+				AA5E9EEA1F1F88210022A322 /* Main.storyboard in Resources */,
+				AA5E9F1A1F1F89630022A322 /* VideoPlayerView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA5E9EDD1F1F88210022A322 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5E9EE71F1F88210022A322 /* ViewController.swift in Sources */,
+				AA5E9EE51F1F88210022A322 /* AppDelegate.swift in Sources */,
+				AA5E9F181F1F89630022A322 /* PlayControButton.swift in Sources */,
+				AA5E9F191F1F89630022A322 /* VideoPlayerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AA5E9EE81F1F88210022A322 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA5E9EE91F1F88210022A322 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AA5E9EED1F1F88210022A322 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA5E9EEE1F1F88210022A322 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AA5E9EF11F1F88210022A322 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA5E9EF21F1F88210022A322 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA5E9EF41F1F88210022A322 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = E782SURY2Q;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Swift-IJKPlayer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.leefeng.Swift-IJKPlayer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		AA5E9EF51F1F88210022A322 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = E782SURY2Q;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Swift-IJKPlayer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.leefeng.Swift-IJKPlayer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA5E9EDC1F1F88210022A322 /* Build configuration list for PBXProject "Swift-IJKPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA5E9EF11F1F88210022A322 /* Debug */,
+				AA5E9EF21F1F88210022A322 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA5E9EF31F1F88210022A322 /* Build configuration list for PBXNativeTarget "Swift-IJKPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA5E9EF41F1F88210022A322 /* Debug */,
+				AA5E9EF51F1F88210022A322 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA5E9ED91F1F88210022A322 /* Project object */;
+}
