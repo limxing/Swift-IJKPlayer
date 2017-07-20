@@ -97,6 +97,7 @@ class VideoPlayerView: UIView {
                     self.buttonPlay.isHidden = false
                 }
             }
+            buttonPlay.isSelected = true
 
         }
        print("leefeng:\(player?.playbackState.rawValue)")
@@ -148,10 +149,18 @@ class VideoPlayerView: UIView {
         }
     }
      //UISlider滑动
-   @objc private func sliderValuechange(view:UISlider)  {
+   @objc private func sliderValuechange(sender:UISlider)  {
         
         leefeng_cancel(delaytask)
-        print("leefeng:\(view.value)")
+        print("leefeng:\(sender.value)")
+        let d = sender.value * Float((player?.duration)!)
+        player?.currentPlaybackTime = TimeInterval(d)
+    
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "mm:ss"
+    
+        let dateCurrent = Date(timeIntervalSince1970: TimeInterval(d))
+        labelCurrent.text = dformatter.string(from: dateCurrent)
     }
     
     //播放按钮点击
@@ -183,7 +192,7 @@ class VideoPlayerView: UIView {
 
     var beginTouch:CGPoint?
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        beginTouch = event?.touches(for: self)?.first?.location(in: self)
+        beginTouch = touches.first?.location(in: self)
 //        if (player?.isPlaying() ?? false) {
 //            changePlayView()
 //        }
@@ -199,7 +208,9 @@ class VideoPlayerView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let endTouch = event?.touches(for: self)?.first?.location(in: self)
+        let endTouch = touches.first?.location(in: self)
+        
+        
         
         if beginTouch?.equalTo(endTouch!) ?? true {
             showPlayView(isHidden:!viewTop.isHidden)
