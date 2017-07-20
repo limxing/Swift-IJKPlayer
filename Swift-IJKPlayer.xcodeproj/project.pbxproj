@@ -30,7 +30,8 @@
 		AA5E9F191F1F89630022A322 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */; };
 		AA5E9F1A1F1F89630022A322 /* VideoPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */; };
 		AAF3A0A11F20440B003DBDAD /* TaskDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */; };
-		AAF3A0A91F20505B003DBDAD /* Slider.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0A81F20505B003DBDAD /* Slider.m */; };
+		AAF3A0AE1F207310003DBDAD /* MSProgressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0AD1F207310003DBDAD /* MSProgressSlider.swift */; };
+		AAF3A0B21F20774C003DBDAD /* Slider.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0B11F20774C003DBDAD /* Slider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,9 +60,10 @@
 		AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerView.xib; sourceTree = "<group>"; };
 		AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDelay.swift; sourceTree = "<group>"; };
-		AAF3A0A61F20505A003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-IJKPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
-		AAF3A0A71F20505B003DBDAD /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
-		AAF3A0A81F20505B003DBDAD /* Slider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slider.m; sourceTree = "<group>"; };
+		AAF3A0AD1F207310003DBDAD /* MSProgressSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSProgressSlider.swift; sourceTree = "<group>"; };
+		AAF3A0AF1F207723003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-IJKPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
+		AAF3A0B01F20774C003DBDAD /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
+		AAF3A0B11F20774C003DBDAD /* Slider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,12 +148,13 @@
 		AA5E9F1B1F1F90C10022A322 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				AAF3A0AD1F207310003DBDAD /* MSProgressSlider.swift */,
+				AAF3A0B01F20774C003DBDAD /* Slider.h */,
+				AAF3A0B11F20774C003DBDAD /* Slider.m */,
 				AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */,
 				AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */,
 				AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */,
-				AAF3A0A71F20505B003DBDAD /* Slider.h */,
-				AAF3A0A81F20505B003DBDAD /* Slider.m */,
-				AAF3A0A61F20505A003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */,
+				AAF3A0AF1F207723003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */,
 			);
 			name = VideoPlayer;
 			sourceTree = "<group>";
@@ -233,9 +236,10 @@
 			files = (
 				AA5E9EE71F1F88210022A322 /* ViewController.swift in Sources */,
 				AA5E9EE51F1F88210022A322 /* AppDelegate.swift in Sources */,
+				AAF3A0AE1F207310003DBDAD /* MSProgressSlider.swift in Sources */,
 				AA5E9F191F1F89630022A322 /* VideoPlayerView.swift in Sources */,
+				AAF3A0B21F20774C003DBDAD /* Slider.m in Sources */,
 				AAF3A0A11F20440B003DBDAD /* TaskDelay.swift in Sources */,
-				AAF3A0A91F20505B003DBDAD /* Slider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

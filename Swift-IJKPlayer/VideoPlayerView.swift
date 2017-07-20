@@ -19,7 +19,8 @@ class VideoPlayerView: UIView {
     @IBOutlet weak var viewBottom: UIView!
     @IBOutlet weak var viewTop: UIView!
     @IBOutlet weak var bacProgressView: UIProgressView!
-    @IBOutlet weak var progressSlider: UISlider!
+    @IBOutlet weak var progressSlider: MSProgressSlider!
+
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -45,17 +46,31 @@ class VideoPlayerView: UIView {
         }
     }
     
-    
+    //刷新进度
     func timeUpdate()  {
+        
+        let total = player?.duration
+        let current = player?.currentPlaybackTime
+        
+        let able = player?.playableDuration
         
         let dformatter = DateFormatter()
         dformatter.dateFormat = "mm:ss"
         
-        let dateDuration = Date(timeIntervalSince1970: (player?.duration)!)
+        let dateDuration = Date(timeIntervalSince1970: (total)!)
         labelDuration.text =  dformatter.string(from: dateDuration)
         
-        let dateCurrent = Date(timeIntervalSince1970: (player?.currentPlaybackTime)!)
+        let dateCurrent = Date(timeIntervalSince1970: (current)!)
         labelCurrent.text = dformatter.string(from: dateCurrent)
+        
+//        progressSlider.setValue(Float(current!)/Float(total!), animated: true)
+        bacProgressView.setProgress(Float(current!)/Float(total!), animated: true)
+        
+//        bacProgressSlider.setProgress(Float(able!)/Float(total!), animated: true)
+        progressSlider.progressValue = Float(able!)/Float(total!)
+        
+        progressSlider.value = Float(current!)/Float(total!)
+        
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -111,16 +126,29 @@ class VideoPlayerView: UIView {
        
         progressSlider.isContinuous = true;//设置为NO,只有在手指离开的时候调用valueChange
         progressSlider.addTarget(self, action: #selector(sliderValuechange), for: .valueChanged)
-        progressSlider.minimumTrackTintColor = #colorLiteral(red: 0.8039215686, green: 0.1764705882, blue: 0.1098039216, alpha: 1)
-        progressSlider.maximumTrackTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        progressSlider.minimumTrackTintColor = #colorLiteral(red: 0.8039215686, green: 0.1764705882, blue: 0.1098039216, alpha: 1)
+        progressSlider.maximumTrackTintColor = UIColor.white
         let image = Slider.createImage(with: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
         let circleImage = Slider.circleImage(with: image, borderWidth: 0, borderColor: UIColor.clear)
         progressSlider.setThumbImage(circleImage, for: .normal)
 
+        progressSlider.addTarget(self, action: #selector(sliderTap), for: .touchUpInside)
+        
+
 
     }
     
-    func sliderValuechange(view:UISlider)  {
+    //UISlider抬起
+   @objc private func sliderTap()  {
+         leefeng_cancel(delaytask)
+        delaytask =  leefeng_delay(2){
+            if self.player?.isPlaying() ?? true{
+                self.showPlayView(isHidden: true)
+            }
+        }
+    }
+     //UISlider滑动
+   @objc private func sliderValuechange(view:UISlider)  {
         
         leefeng_cancel(delaytask)
         print("leefeng:\(view.value)")
@@ -138,6 +166,7 @@ class VideoPlayerView: UIView {
         
 
     }
+    //点击全屏按钮
     @IBAction func clickMax(_ sender: UIButton) {
       
       
@@ -152,7 +181,7 @@ class VideoPlayerView: UIView {
     }
 
 
-     var beginTouch:CGPoint?
+    var beginTouch:CGPoint?
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         beginTouch = event?.touches(for: self)?.first?.location(in: self)
 //        if (player?.isPlaying() ?? false) {
@@ -165,7 +194,7 @@ class VideoPlayerView: UIView {
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        let moveTouch = event?.touches(for: self)?.first?.location(in: self)
+        let moveTouch = touches.first?.location(in: self)
         print("x:\(moveTouch?.x);y:\(moveTouch?.y)")
     }
     
@@ -190,6 +219,7 @@ class VideoPlayerView: UIView {
         viewTop.isHidden = isHidden
         viewBottom.isHidden = isHidden
         buttonPlay.isHidden = isHidden
+        bacProgressView.isHidden = !isHidden
         if !(self.player?.isPlaying() ?? true) {
             buttonPlay.isHidden = false
 
