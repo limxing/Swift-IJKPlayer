@@ -20,6 +20,10 @@ class VideoPlayerView: UIView {
     @IBOutlet weak var viewTop: UIView!
     @IBOutlet weak var bacProgressView: UIProgressView!
     @IBOutlet weak var progressSlider: MSProgressSlider!
+    @IBOutlet weak var tipsView: UIView!
+    @IBOutlet weak var tipsImageView: UIImageView!
+    @IBOutlet weak var tipsLabel: UILabel!
+    @IBOutlet weak var tipsProgressView: UIProgressView!
 
 
     /*
@@ -57,10 +61,10 @@ class VideoPlayerView: UIView {
         let dformatter = DateFormatter()
         dformatter.dateFormat = "mm:ss"
         
-        let dateDuration = Date(timeIntervalSince1970: (total)!)
+        let dateDuration = Date(timeIntervalSince1970: round((total)!))
         labelDuration.text =  dformatter.string(from: dateDuration)
         
-        let dateCurrent = Date(timeIntervalSince1970: (current)!)
+        let dateCurrent = Date(timeIntervalSince1970:  round((current)!))
         labelCurrent.text = dformatter.string(from: dateCurrent)
         
 //        progressSlider.setValue(Float(current!)/Float(total!), animated: true)
@@ -79,17 +83,23 @@ class VideoPlayerView: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(moviePlayBackStateDidChange), name: NSNotification.Name.IJKMPMoviePlayerPlaybackStateDidChange, object: player)
     }
     func moviePlayBackStateDidChange()  {
-        //播放 1  暂停2
-        if player?.playbackState.rawValue == 1 {
+         //播放 1  暂停2  播放完成
+        switch player?.playbackState.rawValue ?? 0 {
+        case 0:
+             buttonPlay.isSelected = false
+            buttonPlay.isHidden = false
+            break
+            
+        case 1:
             leefeng_cancel(delaytask)
             delaytask =  leefeng_delay(2){
                 if self.player?.isPlaying() ?? true{
                     self.showPlayView(isHidden: true)
                 }
             }
-
+            break
             
-        }else if player?.playbackState.rawValue == 2 {
+        case 2:
             leefeng_cancel(delaytask)
             delaytask =  leefeng_delay(2){
                 if !self.viewTop.isHidden && !(self.player?.isPlaying() ?? true){
@@ -97,9 +107,16 @@ class VideoPlayerView: UIView {
                     self.buttonPlay.isHidden = false
                 }
             }
-            buttonPlay.isSelected = true
-
+        
+            break
+            
+            
+        default:
+            break
+            
         }
+       
+       
        print("leefeng:\(player?.playbackState.rawValue)")
        
     }
@@ -135,7 +152,9 @@ class VideoPlayerView: UIView {
 
         progressSlider.addTarget(self, action: #selector(sliderTap), for: .touchUpInside)
         
-
+//tips init
+        tipsView.layer.cornerRadius = 10
+        tipsView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.8)
 
     }
     
@@ -191,26 +210,80 @@ class VideoPlayerView: UIView {
 
 
     var beginTouch:CGPoint?
+    var total:Double = 0
+    var current:Double = 0
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         beginTouch = touches.first?.location(in: self)
+        
+        lastMoveTouch = beginTouch
 //        if (player?.isPlaying() ?? false) {
 //            changePlayView()
 //        }
 //        
 //        let m = self.player?.playableDuration
-//        print("leefeng:\(m)")
+       
+         total = Double((player?.duration)!)
+         current = Double((player?.currentPlaybackTime)!)
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "mm:ss"
+        let currentDuration = Date(timeIntervalSince1970: round(current))
+        let dateDuration = Date(timeIntervalSince1970: round(total))
         
+        tipsLabel.text = dformatter.string(from: currentDuration) + "/" + dformatter.string(from: dateDuration)
+        
+         print("leefeng touchbegin:\(current)")
     }
+    
+    var lastMoveTouch:CGPoint?
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        let moveTouch = touches.first?.location(in: self)
-        print("x:\(moveTouch?.x);y:\(moveTouch?.y)")
+        
+        if buttonMax.isSelected {
+            let moveTouch = touches.first?.location(in: self)
+            if abs((beginTouch?.x)! - (moveTouch?.x)!) < 2{
+                return
+            }
+            if tipsView.isHidden {
+                tipsView.isHidden = false
+                tipsView.alpha = 0
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.tipsView.alpha = 1
+                })
+            }
+           
+            let dif = Double((moveTouch?.x)! - (lastMoveTouch?.x)!)
+            current += dif * 0.8
+            if current >= total {
+                current = total
+            }
+            if current <= 0 {
+                current = 0
+            }
+            print("leefnegme:move，\(current) ,dif: \(dif)")
+            let dformatter = DateFormatter()
+            dformatter.dateFormat = "mm:ss"
+            let currentDuration = Date(timeIntervalSince1970: round(current))
+            let dateDuration = Date(timeIntervalSince1970: round(total))
+            
+            if dif > 0 {
+                //快进
+                tipsImageView.image = UIImage(named: "ic_forword")
+            }else if dif < 0{
+                //快退
+                 tipsImageView.image = UIImage(named: "ic_toback")
+            }
+            tipsLabel.text = dformatter.string(from: currentDuration) + "/" + dformatter.string(from: dateDuration)
+            tipsProgressView.setProgress(Float(current)/Float(total), animated: true)
+            bacProgressView.setProgress(Float(current)/Float(total), animated: true)
+            lastMoveTouch = moveTouch
+           
+        }
+       
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let endTouch = touches.first?.location(in: self)
-        
-        
         
         if beginTouch?.equalTo(endTouch!) ?? true {
             showPlayView(isHidden:!viewTop.isHidden)
@@ -223,6 +296,23 @@ class VideoPlayerView: UIView {
             }
 
         }
+        if !tipsView.isHidden {
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.tipsView.alpha = 0
+
+            }, completion: { (_) in
+                 self.tipsView.isHidden = true
+            })
+        }
+        
+        
+        if abs(current - Double((player?.currentPlaybackTime)!)) > 5 {
+            player?.currentPlaybackTime = TimeInterval(current)
+        }
+        
+        
+        
     }
     
     

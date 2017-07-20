@@ -30,7 +30,8 @@ class ViewController: UIViewController {
         options?.setPlayerOptionIntValue(5, forKey: "framedrop")
         
         //视频源地址
-        let url = NSURL(string: "http://wms2.pkudl.cn/jsj/08281013/video/300k/Vc08281013C00S00P00-300K.mp4")
+        let url = URL(string: "http://baobab.wandoujia.com/api/v1/playUrl?vid=2614&editionType=normal")
+//        let url = NSURL(string: "http://wms2.pkudl.cn/jsj/08281013/video/300k/Vc08281013C00S00P00-300K.mp4")
 //        let url = NSURL(string: "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8")
         //let url = NSURL(string: "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8")
         

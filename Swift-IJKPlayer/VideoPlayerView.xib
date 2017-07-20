@@ -46,7 +46,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="3CV-QP-hyy"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -70,10 +70,10 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W4g-Yq-77F" userLabel="bottom">
-                            <rect key="frame" x="0.0" y="142" width="375" height="38"/>
+                            <rect key="frame" x="0.0" y="136" width="375" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17y-sS-7IF">
-                                    <rect key="frame" x="339" y="1" width="36" height="36"/>
+                                    <rect key="frame" x="339" y="4" width="36" height="36"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="36" id="WX8-lu-PfR"/>
                                         <constraint firstAttribute="width" constant="36" id="d63-uz-g4W"/>
@@ -85,7 +85,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfY-qn-JFu">
-                                    <rect key="frame" x="10" y="9" width="36" height="21"/>
+                                    <rect key="frame" x="10" y="12" width="36" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="Dbo-Fc-3mL"/>
                                         <constraint firstAttribute="width" constant="36" id="LfR-HZ-4Dp"/>
@@ -95,7 +95,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cf-w7-hta">
-                                    <rect key="frame" x="303" y="9" width="36" height="21"/>
+                                    <rect key="frame" x="303" y="12" width="36" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="36" id="880-On-OdE"/>
                                         <constraint firstAttribute="height" constant="21" id="oIA-Ku-ozQ"/>
@@ -105,7 +105,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="SHv-Lx-fPB" customClass="MSProgressSlider" customModule="Swift_IJKPlayer" customModuleProvider="target">
-                                    <rect key="frame" x="49" y="4" width="251" height="31"/>
+                                    <rect key="frame" x="49" y="7" width="251" height="31"/>
                                     <color key="minimumTrackTintColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <userDefinedRuntimeAttributes>
@@ -129,7 +129,44 @@
                                 <constraint firstItem="8cf-w7-hta" firstAttribute="leading" secondItem="SHv-Lx-fPB" secondAttribute="trailing" constant="5" id="cf9-yY-KBh"/>
                                 <constraint firstAttribute="trailing" secondItem="17y-sS-7IF" secondAttribute="trailing" id="g1B-Uf-7c9"/>
                                 <constraint firstItem="WfY-qn-JFu" firstAttribute="leading" secondItem="W4g-Yq-77F" secondAttribute="leading" constant="10" id="s8u-jH-sGW"/>
-                                <constraint firstAttribute="height" constant="38" id="twz-qe-LVQ"/>
+                                <constraint firstAttribute="height" constant="44" id="twz-qe-LVQ"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLe-FX-C5j">
+                            <rect key="frame" x="97.5" y="30" width="180" height="120"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_forword" translatesAutoresizingMaskIntoConstraints="NO" id="L9g-sn-5g2">
+                                    <rect key="frame" x="66" y="10" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="DQK-eE-ksn"/>
+                                        <constraint firstAttribute="height" constant="48" id="IvQ-jd-rxB"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00/00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Beh-KQ-QvD">
+                                    <rect key="frame" x="49" y="68" width="82.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JZb-DB-QIR">
+                                    <rect key="frame" x="9.5" y="93" width="160" height="2"/>
+                                    <color key="tintColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </progressView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.078431372550000003" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <accessibilityTraits key="traits" notEnabled="YES"/>
+                            </accessibility>
+                            <constraints>
+                                <constraint firstItem="Beh-KQ-QvD" firstAttribute="top" secondItem="L9g-sn-5g2" secondAttribute="bottom" constant="10" id="0dC-9V-YCy"/>
+                                <constraint firstAttribute="height" constant="120" id="6uV-QO-it4"/>
+                                <constraint firstItem="Beh-KQ-QvD" firstAttribute="centerX" secondItem="HLe-FX-C5j" secondAttribute="centerX" id="DSy-aB-dhI"/>
+                                <constraint firstAttribute="width" constant="180" id="DTi-yN-1Fx"/>
+                                <constraint firstItem="L9g-sn-5g2" firstAttribute="top" secondItem="HLe-FX-C5j" secondAttribute="top" constant="10" id="MD3-EX-mCx"/>
+                                <constraint firstItem="JZb-DB-QIR" firstAttribute="bottom" secondItem="Beh-KQ-QvD" secondAttribute="bottom" constant="10" id="MKl-Bo-g19"/>
+                                <constraint firstAttribute="trailing" secondItem="JZb-DB-QIR" secondAttribute="trailing" constant="10.5" id="Zeu-Q2-1tn"/>
+                                <constraint firstItem="JZb-DB-QIR" firstAttribute="leading" secondItem="HLe-FX-C5j" secondAttribute="leading" constant="9.5" id="Zz4-Fz-bga"/>
+                                <constraint firstItem="L9g-sn-5g2" firstAttribute="centerX" secondItem="HLe-FX-C5j" secondAttribute="centerX" id="mgy-DL-hIh"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -141,11 +178,13 @@
                         <constraint firstAttribute="trailing" secondItem="D46-aW-VQd" secondAttribute="trailing" id="In9-Ff-4uu"/>
                         <constraint firstItem="W4g-Yq-77F" firstAttribute="leading" secondItem="UOl-2S-wDn" secondAttribute="leading" id="KB5-aa-GUz"/>
                         <constraint firstItem="hXs-hR-A6V" firstAttribute="centerX" secondItem="UOl-2S-wDn" secondAttribute="centerX" id="RXC-CW-w2L"/>
+                        <constraint firstItem="HLe-FX-C5j" firstAttribute="centerX" secondItem="UOl-2S-wDn" secondAttribute="centerX" id="Xq4-vF-g1f"/>
                         <constraint firstItem="D46-aW-VQd" firstAttribute="top" secondItem="UOl-2S-wDn" secondAttribute="top" id="ddo-ff-RD7"/>
                         <constraint firstItem="D46-aW-VQd" firstAttribute="leading" secondItem="UOl-2S-wDn" secondAttribute="leading" id="ef6-hp-ZIq"/>
                         <constraint firstAttribute="bottom" secondItem="W4g-Yq-77F" secondAttribute="bottom" id="kmt-9j-ELP"/>
                         <constraint firstItem="hXs-hR-A6V" firstAttribute="centerY" secondItem="UOl-2S-wDn" secondAttribute="centerY" id="pki-2W-9W8"/>
                         <constraint firstAttribute="trailing" secondItem="W4g-Yq-77F" secondAttribute="trailing" id="rDH-R7-CCD"/>
+                        <constraint firstItem="HLe-FX-C5j" firstAttribute="centerY" secondItem="UOl-2S-wDn" secondAttribute="centerY" id="vFb-ew-y95"/>
                     </constraints>
                 </view>
             </subviews>
@@ -174,6 +213,10 @@
                 <outlet property="labelDuration" destination="8cf-w7-hta" id="MeR-jH-I6E"/>
                 <outlet property="playView" destination="UOl-2S-wDn" id="odB-Dt-j4W"/>
                 <outlet property="progressSlider" destination="SHv-Lx-fPB" id="55L-yU-2aH"/>
+                <outlet property="tipsImageView" destination="L9g-sn-5g2" id="RFh-7w-1fg"/>
+                <outlet property="tipsLabel" destination="Beh-KQ-QvD" id="fGQ-9I-Mbk"/>
+                <outlet property="tipsProgressView" destination="JZb-DB-QIR" id="3Ht-bA-tBD"/>
+                <outlet property="tipsView" destination="HLe-FX-C5j" id="h8V-Db-RFq"/>
                 <outlet property="viewBottom" destination="W4g-Yq-77F" id="wHu-l7-ODf"/>
                 <outlet property="viewTop" destination="D46-aW-VQd" id="lCy-Fl-av3"/>
             </connections>
@@ -182,6 +225,7 @@
     </objects>
     <resources>
         <image name="ic_back" width="8" height="17"/>
+        <image name="ic_forword" width="60" height="60"/>
         <image name="jc_enlarge" width="14" height="14"/>
         <image name="jc_pause_normal" width="60" height="60"/>
         <image name="jc_play_normal" width="60" height="60"/>
