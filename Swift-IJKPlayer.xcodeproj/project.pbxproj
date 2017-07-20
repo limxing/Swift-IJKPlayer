@@ -27,9 +27,10 @@
 		AA5E9F101F1F88BA0022A322 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F0A1F1F88BA0022A322 /* VideoToolbox.framework */; };
 		AA5E9F121F1F88CF0022A322 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F111F1F88CF0022A322 /* libstdc++.tbd */; };
 		AA5E9F141F1F88EB0022A322 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5E9F131F1F88EB0022A322 /* IJKMediaFramework.framework */; };
-		AA5E9F181F1F89630022A322 /* PlayControButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9F151F1F89630022A322 /* PlayControButton.swift */; };
 		AA5E9F191F1F89630022A322 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */; };
 		AA5E9F1A1F1F89630022A322 /* VideoPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */; };
+		AAF3A0A11F20440B003DBDAD /* TaskDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */; };
+		AAF3A0A91F20505B003DBDAD /* Slider.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0A81F20505B003DBDAD /* Slider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,9 +56,12 @@
 		AA5E9F0A1F1F88BA0022A322 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		AA5E9F111F1F88CF0022A322 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		AA5E9F131F1F88EB0022A322 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
-		AA5E9F151F1F89630022A322 /* PlayControButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayControButton.swift; sourceTree = "<group>"; };
 		AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerView.xib; sourceTree = "<group>"; };
+		AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDelay.swift; sourceTree = "<group>"; };
+		AAF3A0A61F20505A003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-IJKPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
+		AAF3A0A71F20505B003DBDAD /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
+		AAF3A0A81F20505B003DBDAD /* Slider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +146,12 @@
 		AA5E9F1B1F1F90C10022A322 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				AA5E9F151F1F89630022A322 /* PlayControButton.swift */,
 				AA5E9F161F1F89630022A322 /* VideoPlayerView.swift */,
 				AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */,
+				AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */,
+				AAF3A0A71F20505B003DBDAD /* Slider.h */,
+				AAF3A0A81F20505B003DBDAD /* Slider.m */,
+				AAF3A0A61F20505A003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */,
 			);
 			name = VideoPlayer;
 			sourceTree = "<group>";
@@ -182,6 +189,7 @@
 					AA5E9EE01F1F88210022A322 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = E782SURY2Q;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -225,8 +233,9 @@
 			files = (
 				AA5E9EE71F1F88210022A322 /* ViewController.swift in Sources */,
 				AA5E9EE51F1F88210022A322 /* AppDelegate.swift in Sources */,
-				AA5E9F181F1F89630022A322 /* PlayControButton.swift in Sources */,
 				AA5E9F191F1F89630022A322 /* VideoPlayerView.swift in Sources */,
+				AAF3A0A11F20440B003DBDAD /* TaskDelay.swift in Sources */,
+				AAF3A0A91F20505B003DBDAD /* Slider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = E782SURY2Q;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -356,6 +366,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.leefeng.Swift-IJKPlayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Swift-IJKPlayer/Swift-IJKPlayer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -364,6 +376,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = E782SURY2Q;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -373,6 +386,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.leefeng.Swift-IJKPlayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Swift-IJKPlayer/Swift-IJKPlayer-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

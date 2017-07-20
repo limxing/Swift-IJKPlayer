@@ -12,12 +12,15 @@ import IJKMediaFramework
 class VideoPlayerView: UIView {
     var mixOrMax:((_ isMax:Bool)->())?
     @IBOutlet weak var playView: UIView!
-    @IBOutlet weak var buttonImageView: PlayControButton!
+    @IBOutlet weak var buttonImageView: UIButton!
     @IBOutlet weak var labelDuration: UILabel!
     @IBOutlet weak var buttonPlay: UIButton!
     @IBOutlet weak var labelCurrent: UILabel!
     @IBOutlet weak var viewBottom: UIView!
     @IBOutlet weak var viewTop: UIView!
+    @IBOutlet weak var bacProgressView: UIProgressView!
+    @IBOutlet weak var progressSlider: UISlider!
+
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -29,7 +32,8 @@ class VideoPlayerView: UIView {
 
     @IBOutlet weak var buttonMax: UIButton!
     
-   
+    var delaytask:Task?
+    
     
     var player:IJKFFMoviePlayerController?{
         didSet{
@@ -62,17 +66,23 @@ class VideoPlayerView: UIView {
     func moviePlayBackStateDidChange()  {
         //播放 1  暂停2
         if player?.playbackState.rawValue == 1 {
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                //code
-                if !self.buttonImageView.isSelected && self.player?.isPlaying() ?? true{
-                    self.buttonImageView.isSelected = true
-                    self.playView.alpha = 0
+            leefeng_cancel(delaytask)
+            delaytask =  leefeng_delay(2){
+                if self.player?.isPlaying() ?? true{
+                    self.showPlayView(isHidden: true)
                 }
             }
+
             
         }else if player?.playbackState.rawValue == 2 {
-            
+            leefeng_cancel(delaytask)
+            delaytask =  leefeng_delay(2){
+                if !self.viewTop.isHidden && !(self.player?.isPlaying() ?? true){
+                    self.showPlayView(isHidden: true)
+                    self.buttonPlay.isHidden = false
+                }
+            }
+
         }
        print("leefeng:\(player?.playbackState.rawValue)")
        
@@ -81,18 +91,13 @@ class VideoPlayerView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        buttonImageView.showPlayView = {
-            self.changePlayView()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-                //code
-                if !self.buttonImageView.isSelected && self.player?.isPlaying() ?? true {
-                    self.buttonImageView.isSelected = true
-                    self.playView.alpha = 0
-                }
-            }
-        }
-        
-        
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+//                if !self.viewTop.isHidden && self.player?.isPlaying() ?? true {
+//                   
+//                    self.showPlayView(isShow: true)
+//                }
+//            }
+
         viewBottom.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
         viewTop.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
 //        //渐变颜色
@@ -103,8 +108,25 @@ class VideoPlayerView: UIView {
 //        //将gradientLayer作为子layer添加到主layer上
 //        viewBottom.layer.addSublayer(gradientLayer)
         
+       
+        progressSlider.isContinuous = true;//设置为NO,只有在手指离开的时候调用valueChange
+        progressSlider.addTarget(self, action: #selector(sliderValuechange), for: .valueChanged)
+        progressSlider.minimumTrackTintColor = #colorLiteral(red: 0.8039215686, green: 0.1764705882, blue: 0.1098039216, alpha: 1)
+        progressSlider.maximumTrackTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        let image = Slider.createImage(with: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+        let circleImage = Slider.circleImage(with: image, borderWidth: 0, borderColor: UIColor.clear)
+        progressSlider.setThumbImage(circleImage, for: .normal)
+
+
     }
     
+    func sliderValuechange(view:UISlider)  {
+        
+        leefeng_cancel(delaytask)
+        print("leefeng:\(view.value)")
+    }
+    
+    //播放按钮点击
     @IBAction func clickPlay(_ sender: Any) {
         if buttonPlay.isSelected {
             player?.pause()
@@ -120,41 +142,58 @@ class VideoPlayerView: UIView {
       
       
         sender.isSelected = !sender.isSelected
-          mixOrMax?(sender.isSelected)
+        mixOrMax?(sender.isSelected)
+        
+        leefeng_cancel(delaytask)
+        delaytask = leefeng_delay(2){
+            self.showPlayView(isHidden: true)
+        }
         
     }
 
-//    @IBAction func clickImageView(_ sender: Any) {
-//        
-//      changePlayView()
-//        
-//    }
-    
+
+     var beginTouch:CGPoint?
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (player?.isPlaying() ?? false) {
-            changePlayView()
-        }
-        
-        let m = self.player?.playableDuration
-        print("leefeng:\(m)")
+        beginTouch = event?.touches(for: self)?.first?.location(in: self)
+//        if (player?.isPlaying() ?? false) {
+//            changePlayView()
+//        }
+//        
+//        let m = self.player?.playableDuration
+//        print("leefeng:\(m)")
         
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        let moveTouch = event?.touches(for: self)?.first?.location(in: self)
+        print("x:\(moveTouch?.x);y:\(moveTouch?.y)")
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let endTouch = event?.touches(for: self)?.first?.location(in: self)
         
-        if !buttonImageView.isSelected {
-            buttonImageView.isSelected = true
+        if beginTouch?.equalTo(endTouch!) ?? true {
+            showPlayView(isHidden:!viewTop.isHidden)
+            
+            leefeng_cancel(delaytask)
+            delaytask =  leefeng_delay(2){
+                if !self.viewTop.isHidden  {
+                    self.showPlayView(isHidden: true)
+                }
+            }
+
         }
     }
     
     
-    func changePlayView()  {
-        if (buttonImageView.isSelected) {
-            playView.alpha = 1
-        }else{
-            playView.alpha = 0
-        }
-        buttonImageView.isSelected = !buttonImageView.isSelected
+    private func showPlayView(isHidden:Bool){
+        viewTop.isHidden = isHidden
+        viewBottom.isHidden = isHidden
+        buttonPlay.isHidden = isHidden
+        if !(self.player?.isPlaying() ?? true) {
+            buttonPlay.isHidden = false
 
+        }
     }
     
 }
