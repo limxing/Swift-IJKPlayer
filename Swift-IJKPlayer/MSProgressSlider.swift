@@ -1,9 +1,9 @@
 //
 //  MSProgressSlider.swift
-//  Pods
 //
-//  Created by messeb on 03/05/2016.
-//  Copyright (c) 2016 messeb. All rights reserved.
+//
+//  Created by leefeng.me on 19/07/2017.
+//  Copyright (c) 2017 leefeng.me. All rights reserved.
 //
 
 import UIKit
@@ -38,36 +38,22 @@ public class MSProgressSlider: UISlider {
         UIGraphicsBeginImageContextWithOptions(drawingRect.size, false, UIScreen.main.scale);
         let context = UIGraphicsGetCurrentContext();
         context?.move(to: CGPoint(x: 0, y:  drawingRect.height/2))
-//        CGContextMoveToPoint(context, 0, CGRectGetHeight(drawingRect)/2);
-//        CGContextSetStrokeColorWithColor(context!, progressColor.cgColor);
         context?.setStrokeColor(progressColor.cgColor)
-//        CGContextAddLineToPoint(context, drawingRect.size.width * CGFloat(progressWidth), CGRectGetHeight(drawingRect)/2);
-        
         context?.addLine(to: CGPoint(x: drawingRect.size.width * CGFloat(progressWidth), y:  drawingRect.height/2))
-//        CGContextStrokePath(context);
-        
+      
         context?.strokePath()
-         context?.move(to: CGPoint(x: drawingRect.size.width * CGFloat(progressWidth), y:  drawingRect.height/2))
-         context?.setStrokeColor(completeColor.cgColor)
-         context?.addLine(to: CGPoint(x: drawingRect.size.width , y:  drawingRect.height/2))
-         context?.strokePath()
+        context?.move(to: CGPoint(x: drawingRect.size.width * CGFloat(progressWidth), y:  drawingRect.height/2))
+        context?.setStrokeColor(completeColor.cgColor)
+        context?.addLine(to: CGPoint(x: drawingRect.size.width , y:  drawingRect.height/2))
+        context?.strokePath()
         
-        
-//        CGContextMoveToPoint(context, drawingRect.size.width * CGFloat(progressWidth), CGRectGetHeight(drawingRect)/2);
-//        CGContextSetStrokeColorWithColor(context, completeColor.CGColor);
-//        CGContextAddLineToPoint(context, drawingRect.size.width, CGRectGetHeight(drawingRect)/2)
-//        CGContextStrokePath(context);
-        
+       
         let maxTrackImg = UIGraphicsGetImageFromCurrentImageContext()
         context?.move(to: CGPoint(x: 0, y:  drawingRect.height/2))
         context?.setStrokeColor(valueColor.cgColor)
         context?.addLine(to: CGPoint(x: drawingRect.size.width, y:  drawingRect.height/2))
         context?.strokePath()
-//        CGContextMoveToPoint(context, 0, CGRectGetHeight(drawingRect)/2);
-//        CGContextAddLineToPoint(context, drawingRect.size.width, CGRectGetHeight(drawingRect)/2);
-//        CGContextSetStrokeColorWithColor(context, valueColor.CGColor);
-//        CGContextStrokePath(context);
-        
+       
         let minTrackImg = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext();

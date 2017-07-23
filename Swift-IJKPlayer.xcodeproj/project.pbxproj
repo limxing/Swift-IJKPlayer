@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA5DDFB91F21FB0D007BFCD4 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DDFB81F21FB0D007BFCD4 /* PlayerViewController.swift */; };
 		AA5E9EE51F1F88210022A322 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9EE41F1F88210022A322 /* AppDelegate.swift */; };
 		AA5E9EE71F1F88210022A322 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5E9EE61F1F88210022A322 /* ViewController.swift */; };
 		AA5E9EEA1F1F88210022A322 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5E9EE81F1F88210022A322 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA5DDFB81F21FB0D007BFCD4 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		AA5E9EE11F1F88210022A322 /* Swift-IJKPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-IJKPlayer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5E9EE41F1F88210022A322 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA5E9EE61F1F88210022A322 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				AA5E9F171F1F89630022A322 /* VideoPlayerView.xib */,
 				AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */,
 				AAF3A0AF1F207723003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */,
+				AA5DDFB81F21FB0D007BFCD4 /* PlayerViewController.swift */,
 			);
 			name = VideoPlayer;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				AA5E9EE71F1F88210022A322 /* ViewController.swift in Sources */,
 				AA5E9EE51F1F88210022A322 /* AppDelegate.swift in Sources */,
 				AAF3A0AE1F207310003DBDAD /* MSProgressSlider.swift in Sources */,
+				AA5DDFB91F21FB0D007BFCD4 /* PlayerViewController.swift in Sources */,
 				AA5E9F191F1F89630022A322 /* VideoPlayerView.swift in Sources */,
 				AAF3A0B21F20774C003DBDAD /* Slider.m in Sources */,
 				AAF3A0A11F20440B003DBDAD /* TaskDelay.swift in Sources */,

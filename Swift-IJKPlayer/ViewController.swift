@@ -14,7 +14,7 @@ import IJKMediaFramework
 class ViewController: UIViewController {
     
     var player:IJKFFMoviePlayerController!
-    
+    var playerController:PlayerViewController!
     
     var playerView:UIView?
     var videoPlayerView:VideoPlayerView?
@@ -22,6 +22,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         playerController = PlayerViewController()
+        
+    
+        
+        if let playerView = playerController.view {
+            addChildViewController(playerController)
+            playerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width,height: height)
+            view.addSubview(playerView)
+        }
+        
+      
         
         
          playerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height))

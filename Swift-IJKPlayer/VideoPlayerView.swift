@@ -46,6 +46,7 @@ class VideoPlayerView: UIView {
             buttonPlay.isSelected = true
 //            print("leefengme:\(player?.duration)")
             initPlayerObservers()
+            
             Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeUpdate), userInfo: nil, repeats: true)
         }
     }
@@ -253,7 +254,7 @@ class VideoPlayerView: UIView {
             }
            
             let dif = Double((moveTouch?.x)! - (lastMoveTouch?.x)!)
-            current += dif * 0.8
+            current += dif * 0.3
             if current >= total {
                 current = total
             }
