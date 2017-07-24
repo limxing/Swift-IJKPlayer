@@ -162,7 +162,7 @@ class VideoPlayerView: UIView {
     //UISlider抬起
    @objc private func sliderTap()  {
          leefeng_cancel(delaytask)
-        delaytask =  leefeng_delay(2){
+        delaytask =  leefeng_delay(3){
             if self.player?.isPlaying() ?? true{
                 self.showPlayView(isHidden: true)
             }
@@ -203,7 +203,7 @@ class VideoPlayerView: UIView {
         mixOrMax?(sender.isSelected)
         
         leefeng_cancel(delaytask)
-        delaytask = leefeng_delay(2){
+        delaytask = leefeng_delay(3){
             self.showPlayView(isHidden: true)
         }
         
@@ -254,7 +254,7 @@ class VideoPlayerView: UIView {
             }
            
             let dif = Double((moveTouch?.x)! - (lastMoveTouch?.x)!)
-            current += dif * 0.3
+            current += dif * 0.2
             if current >= total {
                 current = total
             }
@@ -290,7 +290,7 @@ class VideoPlayerView: UIView {
             showPlayView(isHidden:!viewTop.isHidden)
             
             leefeng_cancel(delaytask)
-            delaytask =  leefeng_delay(2){
+            delaytask =  leefeng_delay(3){
                 if !self.viewTop.isHidden  {
                     self.showPlayView(isHidden: true)
                 }
