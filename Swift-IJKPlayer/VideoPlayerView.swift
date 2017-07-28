@@ -85,9 +85,10 @@ class VideoPlayerView: UIView {
     }
     func moviePlayBackStateDidChange()  {
          //播放 1  暂停2  播放完成
+        print("状态状态：\(player?.playbackState.rawValue)")
         switch player?.playbackState.rawValue ?? 0 {
         case 0:
-             buttonPlay.isSelected = false
+            buttonPlay.isSelected = false
             buttonPlay.isHidden = false
             break
             
@@ -118,7 +119,7 @@ class VideoPlayerView: UIView {
         }
        
        
-       print("leefeng:\(player?.playbackState.rawValue)")
+    
        
     }
     

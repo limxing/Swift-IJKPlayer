@@ -19,8 +19,8 @@ class PlayerViewController: UIViewController {
     
     var url:String?{
         didSet{
-            
             if let p = player,let v = videoPlayerView {
+                p.shutdown()
                 p.view.removeFromSuperview()
                 v.removeFromSuperview()
             }
@@ -29,17 +29,17 @@ class PlayerViewController: UIViewController {
             options?.setPlayerOptionIntValue(5, forKey: "framedrop")
             player = IJKFFMoviePlayerController(contentURLString: url, with: options)
             player?.view.frame = view.frame
-             view.addSubview((player?.view)!)
+            view.addSubview((player?.view)!)
             videoPlayerView = UINib(nibName: "VideoPlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? VideoPlayerView
             videoPlayerView?.frame = view.frame
-            
             videoPlayerView?.player = player
-            
             view.addSubview(videoPlayerView!)
             
             videoPlayerView?.mixOrMax = { (isMax) in
                 self.rotateScreen(isMax:isMax)
             }
+            
+            player.prepareToPlay()
 
         }
     }
@@ -141,9 +141,10 @@ class PlayerViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         //开始播放
-        guard let p = player else { return  }
-        p.prepareToPlay()
+//        guard let p = player else { return  }
+//        p.prepareToPlay()
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         //关闭播放器
