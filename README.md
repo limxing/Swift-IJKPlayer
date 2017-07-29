@@ -16,9 +16,10 @@ IJKPlayer的封装视频播放器封装，Swift编写。仿今日头条视频播
 模拟器+真机（一般用于测试）：链接:http://pan.baidu.com/s/1gf5VjUz  密码:w8fh
 
 2、把项目中 VideoPlayer 文件夹拖进自己的项目
+
 3、有一个桥接文件，如果自己已经配置了则添加：#import "Slider.h" ，没有则使用VideoPlayer文件夹中的 Swift-IJKPlayer-Bridging-Header.h 文件作为桥接文件。
-4、
-基本设置
+
+4、基本设置
 
 ```
 //以下必须配置
@@ -46,7 +47,7 @@ playerController?.playerProtocol = self
 
 ```
 
-协议方法
+5、协议方法
 
 
 ````
@@ -64,10 +65,31 @@ internal func playerStartPlay() {
 
 ````
 
-其他API
+6、其他API
+
 play()播放
+
 pause() 暂停
+
 shutDown()退出
 
 基库： https://github.com/Bilibili/ijkplayer
 
+# License
+
+```
+Copyright  2017 Limxing
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+```
