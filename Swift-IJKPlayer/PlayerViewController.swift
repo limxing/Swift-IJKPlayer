@@ -15,18 +15,32 @@ protocol PlayerProtocol:class {
 }
 
 class PlayerViewController: UIViewController {
-    private var player:IJKFFMoviePlayerController!
-    private var playerController:PlayerViewController!
+    private weak var player:IJKFFMoviePlayerController!
+    private  var playerController:PlayerViewController!
   
-    private var videoPlayerView:VideoPlayerView?
+    private  weak var videoPlayerView:VideoPlayerView?
     
     var height:CGFloat = 200
     
+    private var attendToPlay = false
+    private var isMax = false
+    
+    var playerTitle:String?{
+        didSet{
+            videoPlayerView?.playerTitle = playerTitle
+        }
+    }
+    
+    
     var url:String?{
         didSet{
-                if let p = player,let v = videoPlayerView {
+            attendToPlay = false
+            
+            if let p = player,let v = videoPlayerView {
                 p.shutdown()
+               
                 p.view.removeFromSuperview()
+                v.removeAllObserver()
                 v.removeFromSuperview()
             }
             
@@ -38,10 +52,11 @@ class PlayerViewController: UIViewController {
             videoPlayerView = UINib(nibName: "VideoPlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? VideoPlayerView
             videoPlayerView?.frame = view.frame
             videoPlayerView?.player = player
+            videoPlayerView?.isMax(isMax)
             view.addSubview(videoPlayerView!)
             
-            videoPlayerView?.mixOrMax = { (isMax) in
-                self.rotateScreen(isMax:isMax)
+            videoPlayerView?.mixOrMax = { [weak self] (isMax) in
+                self?.rotateScreen(isMax:isMax)
             }
             
             if isAutoPlay {
@@ -84,7 +99,7 @@ class PlayerViewController: UIViewController {
         //         UIDevice.current.setValue(value, forKey: "orientation")
         //
         
-        
+        self.isMax = isMax
         if (isMax) {//小屏->全屏
             
             UIView.animate(withDuration: 0.25, animations: {
@@ -123,9 +138,7 @@ class PlayerViewController: UIViewController {
     
     
 //    override func viewWillDisappear(_ animated: Bool) {
-//        //关闭播放器
-//        guard let p = player else { return  }
-//        p.shutdown()
+//       
 //    }
     
     ///获取封面ImageView
@@ -139,21 +152,36 @@ class PlayerViewController: UIViewController {
         self.isAutoPlay = autoPlay
     }
     ///播放器代理
-    var playerProtocol:PlayerProtocol?{
+   weak var playerProtocol:PlayerProtocol?{
         didSet{
             videoPlayerView?.playerProtocol = playerProtocol
         }
     }
     
     func play()  {
-        player.prepareToPlay()
+        videoPlayerView?.playOrPause(isPlay:true)
+//        player.prepareToPlay()
     }
     func pause()  {
-        player.pause()
+         videoPlayerView?.playOrPause(isPlay:false)
+//        player.pause()
     }
     func shutDown()  {
         player.shutdown()
     }
+    deinit {
+        onDestory()
+        print("PlayerViewController deinit")
+    }
     
+    //生命周期，必须要调用的
+   private func onDestory() {
+        //关闭播放器
+        guard let p = player else { return  }
+        p.shutdown()
+        
+        videoPlayerView?.removeAllObserver()
+    }
+
 
 }

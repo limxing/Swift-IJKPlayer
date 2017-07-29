@@ -31,7 +31,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D46-aW-VQd" userLabel="top">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CX-V4-yOU">
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CX-V4-yOU">
                                     <rect key="frame" x="5" y="22" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="2mZ-oL-MIg"/>
@@ -177,18 +177,26 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5k-Bv-Y1i">
-                            <rect key="frame" x="142" y="60" width="90" height="60"/>
+                            <rect key="frame" x="142" y="50" width="90" height="80"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="XmB-tm-PxA">
-                                    <rect key="frame" x="27" y="12" width="37" height="37"/>
+                                    <rect key="frame" x="27" y="11.5" width="37" height="37"/>
                                 </activityIndicatorView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmh-Lm-sD4">
+                                    <rect key="frame" x="22" y="57.5" width="47.5" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="XmB-tm-PxA" firstAttribute="centerY" secondItem="l5k-Bv-Y1i" secondAttribute="centerY" id="6PS-H8-M4j"/>
+                                <constraint firstAttribute="bottom" secondItem="qmh-Lm-sD4" secondAttribute="bottom" constant="8" id="65F-uJ-fMQ"/>
+                                <constraint firstItem="XmB-tm-PxA" firstAttribute="centerY" secondItem="l5k-Bv-Y1i" secondAttribute="centerY" constant="-10" id="6PS-H8-M4j"/>
                                 <constraint firstItem="XmB-tm-PxA" firstAttribute="centerX" secondItem="l5k-Bv-Y1i" secondAttribute="centerX" id="Glg-BR-g8h"/>
-                                <constraint firstAttribute="height" constant="60" id="M4N-a5-15o"/>
+                                <constraint firstAttribute="height" constant="80" id="M4N-a5-15o"/>
                                 <constraint firstAttribute="width" constant="90" id="McI-QQ-wVE"/>
+                                <constraint firstItem="qmh-Lm-sD4" firstAttribute="centerX" secondItem="l5k-Bv-Y1i" secondAttribute="centerX" id="wVf-hj-Xl0"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -230,6 +238,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bacProgressView" destination="S88-5D-PRO" id="Gfp-Xk-21E"/>
+                <outlet property="buttonBack" destination="9CX-V4-yOU" id="0lU-kb-n54"/>
                 <outlet property="buttonMax" destination="17y-sS-7IF" id="HHe-j3-SZZ"/>
                 <outlet property="buttonPlay" destination="hXs-hR-A6V" id="Mjt-yn-k1b"/>
                 <outlet property="imageViewCover" destination="JYp-N3-ZrT" id="aYF-1M-1zL"/>
@@ -243,6 +252,7 @@
                 <outlet property="tipsLabel" destination="Beh-KQ-QvD" id="fGQ-9I-Mbk"/>
                 <outlet property="tipsProgressView" destination="JZb-DB-QIR" id="3Ht-bA-tBD"/>
                 <outlet property="tipsView" destination="HLe-FX-C5j" id="h8V-Db-RFq"/>
+                <outlet property="titleLabel" destination="oNk-CF-hjk" id="Vy7-Sb-D3g"/>
                 <outlet property="viewBottom" destination="W4g-Yq-77F" id="wHu-l7-ODf"/>
                 <outlet property="viewTop" destination="D46-aW-VQd" id="lCy-Fl-av3"/>
             </connections>

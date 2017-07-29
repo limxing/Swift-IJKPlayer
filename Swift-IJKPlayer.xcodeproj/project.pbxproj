@@ -33,6 +33,8 @@
 		AAF3A0A11F20440B003DBDAD /* TaskDelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */; };
 		AAF3A0AE1F207310003DBDAD /* MSProgressSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0AD1F207310003DBDAD /* MSProgressSlider.swift */; };
 		AAF3A0B21F20774C003DBDAD /* Slider.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF3A0B11F20774C003DBDAD /* Slider.m */; };
+		AAFD2F811F2C73020097E18D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFD2F801F2C73020097E18D /* Reachability.swift */; };
+		AAFD2F831F2C77680097E18D /* PlayDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFD2F821F2C77680097E18D /* PlayDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		AAF3A0AF1F207723003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-IJKPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		AAF3A0B01F20774C003DBDAD /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
 		AAF3A0B11F20774C003DBDAD /* Slider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slider.m; sourceTree = "<group>"; };
+		AAFD2F801F2C73020097E18D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		AAFD2F821F2C77680097E18D /* PlayDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 				AA5E9EEB1F1F88210022A322 /* Assets.xcassets */,
 				AA5E9EED1F1F88210022A322 /* LaunchScreen.storyboard */,
 				AA5E9EF01F1F88210022A322 /* Info.plist */,
+				AAFD2F821F2C77680097E18D /* PlayDemoViewController.swift */,
 			);
 			path = "Swift-IJKPlayer";
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				AAF3A0A01F20440B003DBDAD /* TaskDelay.swift */,
 				AAF3A0AF1F207723003DBDAD /* Swift-IJKPlayer-Bridging-Header.h */,
 				AA5DDFB81F21FB0D007BFCD4 /* PlayerViewController.swift */,
+				AAFD2F801F2C73020097E18D /* Reachability.swift */,
 			);
 			name = VideoPlayer;
 			sourceTree = "<group>";
@@ -240,9 +246,11 @@
 				AA5E9EE71F1F88210022A322 /* ViewController.swift in Sources */,
 				AA5E9EE51F1F88210022A322 /* AppDelegate.swift in Sources */,
 				AAF3A0AE1F207310003DBDAD /* MSProgressSlider.swift in Sources */,
+				AAFD2F831F2C77680097E18D /* PlayDemoViewController.swift in Sources */,
 				AA5DDFB91F21FB0D007BFCD4 /* PlayerViewController.swift in Sources */,
 				AA5E9F191F1F89630022A322 /* VideoPlayerView.swift in Sources */,
 				AAF3A0B21F20774C003DBDAD /* Slider.m in Sources */,
+				AAFD2F811F2C73020097E18D /* Reachability.swift in Sources */,
 				AAF3A0A11F20440B003DBDAD /* TaskDelay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

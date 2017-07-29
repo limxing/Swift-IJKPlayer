@@ -16,9 +16,9 @@ public class MSProgressSlider: UISlider {
         }
     }
     
-    private var _completeColor: UIColor? = UIColor.white
-    private var _progressColor: UIColor? = UIColor.lightGray
-    private var _valueColor: UIColor? = UIColor.red
+    private weak var _completeColor: UIColor? = UIColor.white
+    private weak var _progressColor: UIColor? = UIColor.lightGray
+    private weak var _valueColor: UIColor? = UIColor.red
     
     override public func awakeFromNib() {
         super.awakeFromNib()

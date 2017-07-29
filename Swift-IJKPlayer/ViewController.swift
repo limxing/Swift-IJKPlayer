@@ -11,43 +11,26 @@ import IJKMediaFramework
 
 
 
-class ViewController: UIViewController {
-    
-   
-   
-    let height:CGFloat = 200
-    var playerController:PlayerViewController?
+class ViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         playerController = PlayerViewController()
-
-        if let playerView = playerController?.view {
-            
-            playerController?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width,height: height)
-            addChildViewController(playerController!)
-            view.addSubview(playerView)
-            
-        }
-        playerController?.isAutoPlay = false
-       
-        playerController?.url = "http://baobab.wandoujia.com/api/v1/playUrl?vid=2616&editionType=normal"
-         playerController?.coverImageView()?.image = UIImage(named: "cover")
-        
         let button = UIButton()
-        button.setTitle("切换路径", for: .normal)
+        button.setTitle("打开播放", for: .normal)
+        button.sizeToFit()
         button.center = view.center
         button.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
         button.addTarget(self, action: #selector(click), for: .touchUpInside)
-        button.sizeToFit()
+        
         view.addSubview(button)
 
 
     }
     func click()  {
         
-        playerController?.url = "http://baobab.wandoujia.com/api/v1/playUrl?vid=2614&editionType=normal"
+       present(PlayDemoViewController(), animated: true)
+        
     }
    
 }

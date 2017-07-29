@@ -15,6 +15,8 @@ class VideoPlayerView: UIView {
     var mixOrMax:((_ isMax:Bool)->())?
     @IBOutlet weak var playView: UIView!
  
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var buttonBack: UIButton!
     @IBOutlet weak var imageViewCover: UIImageView!
     @IBOutlet weak var labelDuration: UILabel!
     @IBOutlet weak var buttonPlay: UIButton!
@@ -38,6 +40,9 @@ class VideoPlayerView: UIView {
         // Drawing code
     }
     */
+    
+   private var canTouch = false
+   
   
 
     @IBOutlet weak var buttonMax: UIButton!
@@ -50,6 +55,7 @@ class VideoPlayerView: UIView {
         }
     }
    
+    var timer:Timer? 
     
     var player:IJKFFMoviePlayerController?{
         didSet{
@@ -57,10 +63,11 @@ class VideoPlayerView: UIView {
             buttonPlay.isHidden = false
 //            print("leefengme:\(player?.duration)")
             initPlayerObservers()
-            
-            Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeUpdate), userInfo: nil, repeats: true)
+          
+         timer =  Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeUpdate), userInfo: nil, repeats: true)
         }
     }
+ 
     
     //刷新进度
     func timeUpdate()  {
@@ -93,23 +100,64 @@ class VideoPlayerView: UIView {
         progressSlider.value = Float(current!)/Float(total!)
         
     }
-    deinit {
+    func removeAllObserver() {
+         print("VideoPlayerView removeAllObserver")
         NotificationCenter.default.removeObserver(self)
+        guard let timer1 = self.timer
+            else{ return }
+        timer1.invalidate()
+
+    }
+    deinit {
+        
+         print("VideoPlayerView deinit")
     }
     func initPlayerObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(moviePlayBackStateDidChange), name: NSNotification.Name.IJKMPMoviePlayerPlaybackStateDidChange, object: player)
     
         NotificationCenter.default.addObserver(self, selector: #selector(mediaIsPreparedToPlayDidChange), name: NSNotification.Name.IJKMPMediaPlaybackIsPreparedToPlayDidChange, object: player)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(moviePlayBackFinish), name: NSNotification.Name.IJKMPMoviePlayerPlaybackDidFinish, object: player)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadStateDidChange), name: NSNotification.Name.IJKMPMoviePlayerLoadStateDidChange, object: player)
+    }
+    
+    func loadStateDidChange()  {
+        let l = player?.loadState
+        print("loadStateDidChange:\(l)")
+    }
+    
+    func moviePlayBackFinish(notifycation:Notification)  {
+        
+       let l = notifycation.userInfo?[IJKMPMoviePlayerPlaybackDidFinishReasonUserInfoKey] as! Int
+        
+        switch (l) {
+        case 0:
+           break
+            
+        case 2:
+
+            break
+            
+        case 1:
+            print("播放错误，需要重新播放：\(l)")
+            canTouch = false
+            buttonPlay.isHidden = true
+            break
+        default:
+            break
+        }
     }
     
     func mediaIsPreparedToPlayDidChange() {
-        
         print("状态状态:mediaIsPreparedToPlayDidChange")
         showPlayView(isHidden: false)
         showLoadView(isHidden: true)
         
     }
+    
     func moviePlayBackStateDidChange()  {
+
+        canTouch = true
          //播放 1  暂停2  播放完成 0
         print("状态状态：\(player?.playbackState.rawValue)")
         switch player?.playbackState.rawValue ?? 0 {
@@ -217,7 +265,7 @@ class VideoPlayerView: UIView {
         showPlayView(isHidden: true)
         showLoadView(isHidden: true)
         
-//        buttonImageView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        imageViewCover.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
     }
     
@@ -254,7 +302,13 @@ class VideoPlayerView: UIView {
         }else{
             player?.prepareToPlay()
             player?.play()
-        }
+            leefeng_delay(0.5, task: { 
+                if !(self.player?.isPlaying())! {
+                    self.showLoadView(isHidden: false)
+
+                }
+            })
+          }
         
         buttonPlay.isSelected = !buttonPlay.isSelected
         
@@ -263,6 +317,8 @@ class VideoPlayerView: UIView {
     //点击全屏按钮
     @IBAction func clickMax(_ sender: UIButton) {
       
+     
+        buttonBack.isHidden = sender.isSelected
       
         sender.isSelected = !sender.isSelected
         mixOrMax?(sender.isSelected)
@@ -278,8 +334,9 @@ class VideoPlayerView: UIView {
     var beginTouch:CGPoint?
     var total:Double = 0
     var current:Double = 0
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !(player?.isPreparedToPlay)! {
+        if !canTouch {
             return
         }
         
@@ -307,7 +364,9 @@ class VideoPlayerView: UIView {
     var lastMoveTouch:CGPoint?
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        if !canTouch {
+            return
+        }
         
         if buttonMax.isSelected {
             let moveTouch = touches.first?.location(in: self)
@@ -354,6 +413,9 @@ class VideoPlayerView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !canTouch {
+            return
+        }
         let endTouch = touches.first?.location(in: self)
         
         if beginTouch?.equalTo(endTouch!) ?? true {
@@ -372,8 +434,8 @@ class VideoPlayerView: UIView {
             UIView.animate(withDuration: 0.25, animations: {
                 self.tipsView.alpha = 0
 
-            }, completion: { (_) in
-                 self.tipsView.isHidden = true
+            }, completion: { [weak self] (_)  in
+                 self?.tipsView.isHidden = true
             })
         }
         
@@ -402,5 +464,28 @@ class VideoPlayerView: UIView {
     func coverImageView() -> UIImageView {
         return imageViewCover
     }
+    
+    func playOrPause(isPlay:Bool) {
+        
+        if isPlay {
+            if !(player?.isPlaying())! {
+                clickPlay(buttonPlay)
+            }
+        }else{
+            if (player?.isPlaying())! {
+                clickPlay(buttonPlay)
+            }
+        }
+    }
+    func isMax(_ isMax:Bool) {
+        buttonMax.isSelected = isMax
+    }
+    
+    var playerTitle:String?{
+        didSet{
+            titleLabel.text = playerTitle
+        }
+    }
+    
     
 }
