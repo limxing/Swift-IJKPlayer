@@ -7,9 +7,10 @@ IJKPlayer的封装视频播放器封装，Swift编写。仿今日头条视频播
 ### How To Use
 
 1、添加依赖库
-<img src="./screen10.jpeg" />
+<img src="./screen10.jpg" />
 
-需要下载的framework
+需要下载的framework：
+
 真机（一般用于上线）：链接:http://pan.baidu.com/s/1dF2Bx3j  密码:t56g
 
 模拟器+真机（一般用于测试）：链接:http://pan.baidu.com/s/1gf5VjUz  密码:w8fh
@@ -48,7 +49,7 @@ playerController?.playerProtocol = self
 协议方法
 
 
-```
+````
 internal func playerStartComplete() {
     print("playerStartComplete 播放完成")
 }
@@ -61,12 +62,12 @@ internal func playerStartPlay() {
     print("playerStartPlay 开始播放")
 }
 
-```
+````
 
 其他API
 play()播放
 pause() 暂停
 shutDown()退出
 
-
+基库： https://github.com/Bilibili/ijkplayer
 
