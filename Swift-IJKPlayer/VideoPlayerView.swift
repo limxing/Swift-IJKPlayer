@@ -122,8 +122,19 @@ class VideoPlayerView: UIView {
     }
     
     func loadStateDidChange()  {
-        let l = player?.loadState
-        print("loadStateDidChange:\(l)")
+        let loadState = player?.loadState.rawValue
+
+        print("loadStateDidChange:\(loadState)")
+//        IJKMPMovieLoadState
+        if loadState == 3 {
+            showLoadView(isHidden: true)
+            if !(player?.isPlaying())! {
+                buttonPlay.isHidden = false
+            }
+        }else if loadState == 4 {
+            showLoadView(isHidden: false)
+        }
+
     }
     
     func moviePlayBackFinish(notifycation:Notification)  {
@@ -170,7 +181,7 @@ class VideoPlayerView: UIView {
         case 1:
             buttonPlay.isSelected = true
             imageViewCover.isHidden = true
-            buttonPlay.isHidden = false
+//            buttonPlay.isHidden = false
             leefeng_cancel(delaytask)
             delaytask =  leefeng_delay(2){
                 if self.player?.isPlaying() ?? true{
@@ -302,7 +313,7 @@ class VideoPlayerView: UIView {
         }else{
             player?.prepareToPlay()
             player?.play()
-            leefeng_delay(0.5, task: { 
+            _ = leefeng_delay(0.5, task: {
                 if !(self.player?.isPlaying())! {
                     self.showLoadView(isHidden: false)
 
