@@ -15,13 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rD-wv-Z7a" customClass="PlayControButton" customModule="Swift_IJKPlayer" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JYp-N3-ZrT">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
-                    <accessibility key="accessibilityConfiguration">
-                        <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
-                    </accessibility>
-                </button>
-                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S88-5D-PRO">
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
+                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S88-5D-PRO">
                     <rect key="frame" x="0.0" y="178" width="375" height="2"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="progressTintColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,6 +38,9 @@
                                         <constraint firstAttribute="height" constant="24" id="RGe-cL-ync"/>
                                     </constraints>
                                     <state key="normal" image="ic_back"/>
+                                    <connections>
+                                        <action selector="buttonBackClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qug-I9-E0B"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNk-CF-hjk">
                                     <rect key="frame" x="29" y="23" width="338" height="22"/>
@@ -175,6 +176,21 @@
                                 <constraint firstItem="L9g-sn-5g2" firstAttribute="centerX" secondItem="HLe-FX-C5j" secondAttribute="centerX" id="mgy-DL-hIh"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5k-Bv-Y1i">
+                            <rect key="frame" x="142" y="60" width="90" height="60"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="XmB-tm-PxA">
+                                    <rect key="frame" x="27" y="12" width="37" height="37"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="XmB-tm-PxA" firstAttribute="centerY" secondItem="l5k-Bv-Y1i" secondAttribute="centerY" id="6PS-H8-M4j"/>
+                                <constraint firstItem="XmB-tm-PxA" firstAttribute="centerX" secondItem="l5k-Bv-Y1i" secondAttribute="centerX" id="Glg-BR-g8h"/>
+                                <constraint firstAttribute="height" constant="60" id="M4N-a5-15o"/>
+                                <constraint firstAttribute="width" constant="90" id="McI-QQ-wVE"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <accessibility key="accessibilityConfiguration">
@@ -187,10 +203,12 @@
                         <constraint firstItem="HLe-FX-C5j" firstAttribute="centerX" secondItem="UOl-2S-wDn" secondAttribute="centerX" id="Xq4-vF-g1f"/>
                         <constraint firstItem="D46-aW-VQd" firstAttribute="top" secondItem="UOl-2S-wDn" secondAttribute="top" id="ddo-ff-RD7"/>
                         <constraint firstItem="D46-aW-VQd" firstAttribute="leading" secondItem="UOl-2S-wDn" secondAttribute="leading" id="ef6-hp-ZIq"/>
+                        <constraint firstItem="l5k-Bv-Y1i" firstAttribute="centerY" secondItem="HLe-FX-C5j" secondAttribute="centerY" id="i7c-2V-YJz"/>
                         <constraint firstAttribute="bottom" secondItem="W4g-Yq-77F" secondAttribute="bottom" id="kmt-9j-ELP"/>
                         <constraint firstItem="hXs-hR-A6V" firstAttribute="centerY" secondItem="UOl-2S-wDn" secondAttribute="centerY" id="pki-2W-9W8"/>
                         <constraint firstAttribute="trailing" secondItem="W4g-Yq-77F" secondAttribute="trailing" id="rDH-R7-CCD"/>
                         <constraint firstItem="HLe-FX-C5j" firstAttribute="centerY" secondItem="UOl-2S-wDn" secondAttribute="centerY" id="vFb-ew-y95"/>
+                        <constraint firstItem="l5k-Bv-Y1i" firstAttribute="centerX" secondItem="HLe-FX-C5j" secondAttribute="centerX" id="zLf-zi-5Wv"/>
                     </constraints>
                 </view>
             </subviews>
@@ -199,24 +217,26 @@
                 <constraint firstItem="UOl-2S-wDn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1A8-xR-gEJ"/>
                 <constraint firstItem="S88-5D-PRO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4Em-HB-QoE"/>
                 <constraint firstAttribute="trailing" secondItem="UOl-2S-wDn" secondAttribute="trailing" id="5Mu-Fb-WkH"/>
+                <constraint firstItem="JYp-N3-ZrT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7GO-ng-tLa"/>
                 <constraint firstAttribute="bottom" secondItem="S88-5D-PRO" secondAttribute="bottom" id="CFl-p8-80Z"/>
                 <constraint firstAttribute="bottom" secondItem="UOl-2S-wDn" secondAttribute="bottom" id="DQP-cE-Lbp"/>
                 <constraint firstAttribute="trailing" secondItem="S88-5D-PRO" secondAttribute="trailing" id="GSE-Z4-ta4"/>
-                <constraint firstItem="UOl-2S-wDn" firstAttribute="bottom" secondItem="6rD-wv-Z7a" secondAttribute="bottom" id="HFJ-Qu-BEc"/>
-                <constraint firstItem="UOl-2S-wDn" firstAttribute="top" secondItem="6rD-wv-Z7a" secondAttribute="top" id="IgY-D5-6Hf"/>
-                <constraint firstItem="UOl-2S-wDn" firstAttribute="leading" secondItem="6rD-wv-Z7a" secondAttribute="leading" id="V1b-XG-9rq"/>
-                <constraint firstItem="UOl-2S-wDn" firstAttribute="trailing" secondItem="6rD-wv-Z7a" secondAttribute="trailing" id="Wn2-hO-VKP"/>
+                <constraint firstAttribute="bottom" secondItem="JYp-N3-ZrT" secondAttribute="bottom" id="TDR-zv-lep"/>
+                <constraint firstAttribute="trailing" secondItem="JYp-N3-ZrT" secondAttribute="trailing" id="Wph-9A-6xz"/>
                 <constraint firstItem="UOl-2S-wDn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fkw-QW-M71"/>
+                <constraint firstItem="JYp-N3-ZrT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hpU-P1-mvK"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bacProgressView" destination="S88-5D-PRO" id="Gfp-Xk-21E"/>
-                <outlet property="buttonImageView" destination="6rD-wv-Z7a" id="p4t-4B-tMQ"/>
                 <outlet property="buttonMax" destination="17y-sS-7IF" id="HHe-j3-SZZ"/>
                 <outlet property="buttonPlay" destination="hXs-hR-A6V" id="Mjt-yn-k1b"/>
+                <outlet property="imageViewCover" destination="JYp-N3-ZrT" id="aYF-1M-1zL"/>
                 <outlet property="labelCurrent" destination="WfY-qn-JFu" id="Du5-qL-Cku"/>
                 <outlet property="labelDuration" destination="8cf-w7-hta" id="MeR-jH-I6E"/>
+                <outlet property="loadview" destination="XmB-tm-PxA" id="oIK-lV-okN"/>
+                <outlet property="loadviewbac" destination="l5k-Bv-Y1i" id="hbl-yf-vYo"/>
                 <outlet property="playView" destination="UOl-2S-wDn" id="odB-Dt-j4W"/>
                 <outlet property="progressSlider" destination="SHv-Lx-fPB" id="55L-yU-2aH"/>
                 <outlet property="tipsImageView" destination="L9g-sn-5g2" id="RFh-7w-1fg"/>

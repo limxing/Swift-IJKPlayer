@@ -10,9 +10,12 @@ import UIKit
 import IJKMediaFramework
 
 class VideoPlayerView: UIView {
+    weak var playerProtocol:PlayerProtocol?
+
     var mixOrMax:((_ isMax:Bool)->())?
     @IBOutlet weak var playView: UIView!
-    @IBOutlet weak var buttonImageView: UIButton!
+ 
+    @IBOutlet weak var imageViewCover: UIImageView!
     @IBOutlet weak var labelDuration: UILabel!
     @IBOutlet weak var buttonPlay: UIButton!
     @IBOutlet weak var labelCurrent: UILabel!
@@ -25,7 +28,9 @@ class VideoPlayerView: UIView {
     @IBOutlet weak var tipsLabel: UILabel!
     @IBOutlet weak var tipsProgressView: UIProgressView!
 
+    @IBOutlet weak var loadviewbac: UIView!
 
+    @IBOutlet weak var loadview: UIActivityIndicatorView!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -39,11 +44,17 @@ class VideoPlayerView: UIView {
     
     var delaytask:Task?
     
+    @IBAction func buttonBackClick(_ sender: Any) {
+        if buttonMax.isSelected {
+            clickMax(buttonMax)
+        }
+    }
+   
     
     var player:IJKFFMoviePlayerController?{
         didSet{
-            player?.play()
-            buttonPlay.isSelected = true
+//            player?.play()
+            buttonPlay.isHidden = false
 //            print("leefengme:\(player?.duration)")
             initPlayerObservers()
             
@@ -53,6 +64,11 @@ class VideoPlayerView: UIView {
     
     //刷新进度
     func timeUpdate()  {
+        guard let p = player else { return  }
+        
+        if !p.isPlaying(){
+            return
+        }
         
         let total = player?.duration
         let current = player?.currentPlaybackTime
@@ -82,26 +98,43 @@ class VideoPlayerView: UIView {
     }
     func initPlayerObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(moviePlayBackStateDidChange), name: NSNotification.Name.IJKMPMoviePlayerPlaybackStateDidChange, object: player)
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(mediaIsPreparedToPlayDidChange), name: NSNotification.Name.IJKMPMediaPlaybackIsPreparedToPlayDidChange, object: player)
+    }
+    
+    func mediaIsPreparedToPlayDidChange() {
+        
+        print("状态状态:mediaIsPreparedToPlayDidChange")
+        showPlayView(isHidden: false)
+        showLoadView(isHidden: true)
+        
     }
     func moviePlayBackStateDidChange()  {
-         //播放 1  暂停2  播放完成
+         //播放 1  暂停2  播放完成 0
         print("状态状态：\(player?.playbackState.rawValue)")
         switch player?.playbackState.rawValue ?? 0 {
         case 0:
             buttonPlay.isSelected = false
             buttonPlay.isHidden = false
+            playerProtocol?.playerStartComplete()
             break
             
         case 1:
+            buttonPlay.isSelected = true
+            imageViewCover.isHidden = true
+            buttonPlay.isHidden = false
             leefeng_cancel(delaytask)
             delaytask =  leefeng_delay(2){
                 if self.player?.isPlaying() ?? true{
                     self.showPlayView(isHidden: true)
                 }
             }
+            showLoadView(isHidden:true)
+           playerProtocol?.playerStartPlay()
             break
             
         case 2:
+            buttonPlay.isSelected = false
             leefeng_cancel(delaytask)
             delaytask =  leefeng_delay(2){
                 if !self.viewTop.isHidden && !(self.player?.isPlaying() ?? true){
@@ -109,17 +142,29 @@ class VideoPlayerView: UIView {
                     self.buttonPlay.isHidden = false
                 }
             }
-        
+            playerProtocol?.playerStartPause()
             break
-            
-            
+        case 4:
+            if !loadview.isAnimating {
+                showLoadView(isHidden: false)
+            }
+            break
         default:
             break
             
         }
        
-       
+    }
     
+    ///是否开启菊花
+    func showLoadView(isHidden:Bool)  {
+        loadviewbac.isHidden = isHidden
+        if isHidden {
+             loadview.stopAnimating()
+        }else{
+             loadview.startAnimating()
+             buttonPlay.isHidden = true
+        }
        
     }
     
@@ -157,11 +202,29 @@ class VideoPlayerView: UIView {
 //tips init
         tipsView.layer.cornerRadius = 10
         tipsView.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.8)
+        
+        loadviewbac.layer.cornerRadius = 10
+        loadviewbac.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.8)
+        
+
+//        loadview.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+//        let transform = CGAffineTransform(scaleX: 2, y: 2)
+//        loadview.transform = transform
+        
+        loadview.center = loadviewbac.center
+        loadview.startAnimating()
+
+        showPlayView(isHidden: true)
+        showLoadView(isHidden: true)
+        
+//        buttonImageView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
     }
     
     //UISlider抬起
-   @objc private func sliderTap()  {
+   @objc private func sliderTap(sender:UISlider)  {
+        let d = sender.value * Float((player?.duration)!)
+        player?.currentPlaybackTime = TimeInterval(d)
          leefeng_cancel(delaytask)
         delaytask =  leefeng_delay(3){
             if self.player?.isPlaying() ?? true{
@@ -175,7 +238,7 @@ class VideoPlayerView: UIView {
         leefeng_cancel(delaytask)
         print("leefeng:\(sender.value)")
         let d = sender.value * Float((player?.duration)!)
-        player?.currentPlaybackTime = TimeInterval(d)
+//        player?.currentPlaybackTime = TimeInterval(d)
     
         let dformatter = DateFormatter()
         dformatter.dateFormat = "mm:ss"
@@ -189,6 +252,7 @@ class VideoPlayerView: UIView {
         if buttonPlay.isSelected {
             player?.pause()
         }else{
+            player?.prepareToPlay()
             player?.play()
         }
         
@@ -215,6 +279,10 @@ class VideoPlayerView: UIView {
     var total:Double = 0
     var current:Double = 0
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !(player?.isPreparedToPlay)! {
+            return
+        }
+        
         beginTouch = touches.first?.location(in: self)
         
         lastMoveTouch = beginTouch
@@ -247,6 +315,7 @@ class VideoPlayerView: UIView {
                 return
             }
             if tipsView.isHidden {
+                buttonPlay.isHidden = true
                 tipsView.isHidden = false
                 tipsView.alpha = 0
                 UIView.animate(withDuration: 0.25, animations: {
@@ -277,7 +346,7 @@ class VideoPlayerView: UIView {
             }
             tipsLabel.text = dformatter.string(from: currentDuration) + "/" + dformatter.string(from: dateDuration)
             tipsProgressView.setProgress(Float(current)/Float(total), animated: true)
-            bacProgressView.setProgress(Float(current)/Float(total), animated: true)
+//            bacProgressView.setProgress(Float(current)/Float(total), animated: true)
             lastMoveTouch = moveTouch
            
         }
@@ -323,10 +392,15 @@ class VideoPlayerView: UIView {
         viewBottom.isHidden = isHidden
         buttonPlay.isHidden = isHidden
         bacProgressView.isHidden = !isHidden
+        
         if !(self.player?.isPlaying() ?? true) {
             buttonPlay.isHidden = false
 
         }
+    }
+    
+    func coverImageView() -> UIImageView {
+        return imageViewCover
     }
     
 }

@@ -8,18 +8,23 @@
 
 import UIKit
 import IJKMediaFramework
+protocol PlayerProtocol:class {
+    func playerStartPlay()
+    func playerStartPause()
+    func playerStartComplete()
+}
 
 class PlayerViewController: UIViewController {
- var player:IJKFFMoviePlayerController!
-    var playerController:PlayerViewController!
+    private var player:IJKFFMoviePlayerController!
+    private var playerController:PlayerViewController!
   
-    var videoPlayerView:VideoPlayerView?
+    private var videoPlayerView:VideoPlayerView?
     
     var height:CGFloat = 200
     
     var url:String?{
         didSet{
-            if let p = player,let v = videoPlayerView {
+                if let p = player,let v = videoPlayerView {
                 p.shutdown()
                 p.view.removeFromSuperview()
                 v.removeFromSuperview()
@@ -39,7 +44,9 @@ class PlayerViewController: UIViewController {
                 self.rotateScreen(isMax:isMax)
             }
             
-            player.prepareToPlay()
+            if isAutoPlay {
+                player.prepareToPlay()
+            }
 
         }
     }
@@ -48,37 +55,6 @@ class PlayerViewController: UIViewController {
         didSet{
             guard let f = frame else { return  }
             view.frame = f
-//            let options = IJKFFOptions.byDefault()
-//            options?.setPlayerOptionIntValue(5, forKey: "framedrop")
-//            
-//            //视频源地址
-//            let url = URL(string: "http://baobab.wandoujia.com/api/v1/playUrl?vid=2614&editionType=normal")
-//            //        let url = NSURL(string: "http://wms2.pkudl.cn/jsj/08281013/video/300k/Vc08281013C00S00P00-300K.mp4")
-//            //        let url = NSURL(string: "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8")
-//            //let url = NSURL(string: "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8")
-//            
-//            //初始化播放器，播放在线视频或直播（RTMP）
-//             player = IJKFFMoviePlayerController(contentURL: url as URL!, with: options)
-//            //播放页面视图宽高自适应
-//            player?.view.frame = view.frame
-//            
-//            //        player?.shouldAutoplay = true //开启自动播放
-//            
-//            //        self.view.autoresizesSubviews = true
-//            view.addSubview((player?.view)!)
-//            
-//            
-//            
-//            videoPlayerView = UINib(nibName: "VideoPlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? VideoPlayerView
-//            videoPlayerView?.frame = view.frame
-//            
-//            videoPlayerView?.player = player
-//            
-//            view.addSubview(videoPlayerView!)
-//            
-//            videoPlayerView?.mixOrMax = { (isMax) in
-//                self.rotateScreen(isMax:isMax)
-//            }
         }
     }
   
@@ -139,17 +115,45 @@ class PlayerViewController: UIViewController {
         }
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        //开始播放
+//    override func viewWillAppear(_ animated: Bool) {
+//        //开始播放
 //        guard let p = player else { return  }
 //        p.prepareToPlay()
-    }
+//    }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        //关闭播放器
-        guard let p = player else { return  }
-        p.shutdown()
+//    override func viewWillDisappear(_ animated: Bool) {
+//        //关闭播放器
+//        guard let p = player else { return  }
+//        p.shutdown()
+//    }
+    
+    ///获取封面ImageView
+    func coverImageView() -> UIImageView? {
+        return videoPlayerView?.coverImageView();
     }
+    var isAutoPlay = true
+    
+    ///是否自动播放
+    func isAutoPlay(autoPlay:Bool)  {
+        self.isAutoPlay = autoPlay
+    }
+    ///播放器代理
+    var playerProtocol:PlayerProtocol?{
+        didSet{
+            videoPlayerView?.playerProtocol = playerProtocol
+        }
+    }
+    
+    func play()  {
+        player.prepareToPlay()
+    }
+    func pause()  {
+        player.pause()
+    }
+    func shutDown()  {
+        player.shutdown()
+    }
+    
 
 }

@@ -30,8 +30,10 @@ class ViewController: UIViewController {
             view.addSubview(playerView)
             
         }
-        playerController?.url = "http://wms2.pkudl.cn/jsj/08281013/video/300k/Vc08281013C00S00P00-300K.mp4"
-        
+        playerController?.isAutoPlay = false
+       
+        playerController?.url = "http://baobab.wandoujia.com/api/v1/playUrl?vid=2616&editionType=normal"
+         playerController?.coverImageView()?.image = UIImage(named: "cover")
         
         let button = UIButton()
         button.setTitle("切换路径", for: .normal)
@@ -40,8 +42,11 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(click), for: .touchUpInside)
         button.sizeToFit()
         view.addSubview(button)
+
+
     }
     func click()  {
+        
         playerController?.url = "http://baobab.wandoujia.com/api/v1/playUrl?vid=2614&editionType=normal"
     }
    
